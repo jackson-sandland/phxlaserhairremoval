@@ -577,16 +577,82 @@
   <div class="mob-bar" id="mobBar">
     <div class="mob-bar-inner">
       <a href="tel:+14806318154" class="mob-btn cb"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Call</a>
-      <a href="sms:+14806318154" class="mob-btn tb"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Text Us</a>
+      <a href="#" onclick="openChat();return false;" class="mob-btn tb"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Text Us</a>
       <a href="#book" class="mob-btn bb"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Book</a>
     </div>
   </div>
 
   <!-- Desktop floating btns -->
   <div class="float-btns" id="floatBtns">
-    <a href="sms:+14806318154" class="fl-btn sms"><span class="tip">Text Us Now</span><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></a>
+    <a href="#" onclick="openChat();return false;" class="fl-btn sms"><span class="tip">Text Us Now</span><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></a>
     <a href="tel:+14806318154" class="fl-btn phone"><span class="tip">Call Now</span><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></a>
   </div>
+
+  <!-- Chat Widget -->
+  <div class="chat-overlay" id="chatOverlay" onclick="closeChat()"></div>
+  <div class="chat-widget" id="chatWidget">
+    <div class="chat-header">
+      <div class="chat-header-left">
+        <div class="chat-avatar">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#fff" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <div>
+          <strong>PHX Laser Hair Removal</strong>
+          <span class="chat-status">We typically reply in minutes</span>
+        </div>
+      </div>
+      <button class="chat-close" onclick="closeChat()" aria-label="Close">&times;</button>
+    </div>
+    <div class="chat-body" id="chatBody">
+      <div class="chat-bubble chat-them">
+        <p>Hi! 👋 Thanks for reaching out. How can we help you today? Send us a message and we'll text you right back.</p>
+        <span class="chat-time">Just now</span>
+      </div>
+    </div>
+    <form class="chat-form" id="chatForm">
+      <div class="chat-input-row" id="chatNameRow">
+        <input type="text" id="chatName" placeholder="Your name" required>
+      </div>
+      <div class="chat-input-row" id="chatPhoneRow">
+        <input type="tel" id="chatPhone" placeholder="Your phone number" required>
+      </div>
+      <div class="chat-input-row">
+        <input type="text" id="chatMsg" placeholder="Type your message..." required>
+        <button type="submit" class="chat-send" aria-label="Send">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <style>
+    .chat-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.3);z-index:1100}
+    .chat-overlay.open{display:block}
+    .chat-widget{display:none;position:fixed;bottom:1.5rem;right:1.5rem;width:360px;max-width:calc(100vw - 2rem);background:var(--white);border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.2);z-index:1101;flex-direction:column;overflow:hidden;max-height:500px}
+    .chat-widget.open{display:flex}
+    .chat-header{background:var(--green);color:var(--white);padding:1rem 1.25rem;display:flex;justify-content:space-between;align-items:center}
+    .chat-header-left{display:flex;align-items:center;gap:.65rem}
+    .chat-avatar{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .chat-header strong{font-size:.82rem;display:block}
+    .chat-status{font-size:.62rem;opacity:.7}
+    .chat-close{background:none;border:none;color:var(--white);font-size:1.5rem;cursor:pointer;padding:0 .25rem;line-height:1;opacity:.7;transition:opacity .2s}
+    .chat-close:hover{opacity:1}
+    .chat-body{flex:1;padding:1.25rem;overflow-y:auto;background:#f9f9f9;min-height:120px}
+    .chat-bubble{max-width:85%;padding:.75rem 1rem;border-radius:12px;margin-bottom:.75rem;font-size:.82rem;line-height:1.5;position:relative}
+    .chat-them{background:var(--white);border:1px solid #eee;border-radius:12px 12px 12px 2px;color:var(--dark)}
+    .chat-me{background:var(--green);color:var(--white);border-radius:12px 12px 2px 12px;margin-left:auto}
+    .chat-time{font-size:.55rem;color:var(--taupe);margin-top:.3rem;display:block}
+    .chat-me .chat-time{color:rgba(255,255,255,.6)}
+    .chat-form{padding:.75rem;border-top:1px solid #eee;background:var(--white)}
+    .chat-input-row{display:flex;gap:.4rem;margin-bottom:.4rem}
+    .chat-input-row:last-child{margin-bottom:0}
+    .chat-input-row input{flex:1;padding:.65rem .85rem;border:1px solid #e5e5e5;border-radius:8px;font-family:var(--bd);font-size:.82rem;outline:none;transition:border-color .2s}
+    .chat-input-row input:focus{border-color:var(--green)}
+    .chat-send{background:var(--green);color:var(--white);border:none;border-radius:8px;width:40px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s;flex-shrink:0}
+    .chat-send:hover{background:#245a42}
+    .chat-confirmed .chat-form{display:none}
+    @media(max-width:768px){.chat-widget{bottom:0;right:0;left:0;width:100%;max-width:100%;border-radius:12px 12px 0 0;max-height:70vh}.chat-widget.open{bottom:60px}}
+  </style>
 
   <script>
     const nav=document.getElementById('nav'),mobBar=document.getElementById('mobBar'),floatBtns=document.getElementById('floatBtns');
@@ -598,6 +664,48 @@
     document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
     document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();const id=a.getAttribute('href');if(id==='#')return;const t=document.querySelector(id);if(t)window.scrollTo({top:t.getBoundingClientRect().top+window.scrollY-nav.offsetHeight-10,behavior:'smooth'});});});
     document.querySelectorAll('.faq-q').forEach(b=>{b.addEventListener('click',()=>{const i=b.parentElement,w=i.classList.contains('open');document.querySelectorAll('.faq-item').forEach(x=>x.classList.remove('open'));if(!w)i.classList.add('open');});});
+
+    // Chat widget
+    const chatWidget=document.getElementById('chatWidget'),chatOverlay=document.getElementById('chatOverlay'),chatBody=document.getElementById('chatBody'),chatForm=document.getElementById('chatForm');
+    function openChat(){chatWidget.classList.add('open');chatOverlay.classList.add('open');document.getElementById('chatName').focus();}
+    function closeChat(){chatWidget.classList.remove('open');chatOverlay.classList.remove('open');}
+
+    // Also make all sms: links open the chat instead
+    document.querySelectorAll('a[href^="sms:"]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();openChat();});});
+
+    chatForm.addEventListener('submit',e=>{
+      e.preventDefault();
+      const name=document.getElementById('chatName').value.trim();
+      const phone=document.getElementById('chatPhone').value.trim();
+      const msg=document.getElementById('chatMsg').value.trim();
+      if(!name||!phone||!msg)return;
+
+      // Show user message
+      const bubble=document.createElement('div');
+      bubble.className='chat-bubble chat-me';
+      bubble.innerHTML='<p>'+msg.replace(/</g,'&lt;')+'</p><span class="chat-time">Just now</span>';
+      chatBody.appendChild(bubble);
+
+      // Show confirmation
+      setTimeout(()=>{
+        const reply=document.createElement('div');
+        reply.className='chat-bubble chat-them';
+        reply.innerHTML='<p>Thanks '+name.split(' ')[0]+'! We got your message and will text you back at <strong>'+phone.replace(/</g,'&lt;')+'</strong> within a few minutes.</p><span class="chat-time">Just now</span>';
+        chatBody.appendChild(reply);
+        chatBody.scrollTop=chatBody.scrollHeight;
+      },800);
+
+      // Hide name/phone fields, clear message
+      document.getElementById('chatNameRow').style.display='none';
+      document.getElementById('chatPhoneRow').style.display='none';
+      document.getElementById('chatMsg').value='';
+      document.getElementById('chatMsg').placeholder='Type another message...';
+      chatBody.scrollTop=chatBody.scrollHeight;
+
+      // TODO: Send to backend (webhook, email service, etc.)
+      // For now, log to console
+      console.log('LEAD:',{name,phone,message:msg,timestamp:new Date().toISOString()});
+    });
   </script>
 </body>
 </html>
